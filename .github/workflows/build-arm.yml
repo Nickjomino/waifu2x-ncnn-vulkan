@@ -15,15 +15,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up CMake
-        uses: jwlawson/actions-setup-cmake@v1
-        with:
-          cmake-version: '3.21.0'
-
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libvulkan-dev gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
+          sudo apt-get install -y build-essential libvulkan-dev gcc-arm-linux-gnueabi g++-arm-linux-gnueabi make
+
+      - name: Check toolchain file
+        run: |
+          ls -l toolchains/armv7.toolchain.cmake  # Verifica se o arquivo existe
 
       - name: Configure CMake
         run: |
