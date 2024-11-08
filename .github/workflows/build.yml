@@ -1,4 +1,4 @@
-name: Build for ARMv7
+name: ARMv7
 
 on:
   push:
