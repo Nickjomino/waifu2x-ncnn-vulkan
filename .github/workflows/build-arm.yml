@@ -15,6 +15,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Clone the repository
+        run: |
+          git clone https://github.com/seu-usuario/waifu2x-ncnn-vulkan.git
+          cd waifu2x-ncnn-vulkan
+
       - name: Set up CMake
         uses: jwlawson/actions-setup-cmake@v1
         with:
@@ -26,16 +31,15 @@ jobs:
           sudo apt-get install -y build-essential libvulkan-dev
 
       - name: Configure CMake
-        run: | 
-          ls
         run: |
+          cd waifu2x-ncnn-vulkan/src  # Navega para o diretório onde está o CMakeLists.txt
           mkdir build
           cd build
-          cmake ../src -DCMAKE_TOOLCHAIN_FILE=../toolchains/armv7.toolchain.cmake
+          cmake .. -DCMAKE_TOOLCHAIN_FILE=../../toolchains/armv7.toolchain.cmake
 
       - name: Build
         run: |
-          cd build
+          cd waifu2x-ncnn-vulkan/build
           make
 
       - name: Upload build artifacts
