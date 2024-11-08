@@ -20,6 +20,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential libvulkan-dev gcc-arm-linux-gnueabi g++-arm-linux-gnueabi make
 
+      - name: Create toolchain directory
+        run: |
+          mkdir -p toolchains  # Cria o diretório toolchains se não existir
+
       - name: Create toolchain file
         run: |
           echo "SET(CMAKE_SYSTEM_NAME Linux)" > toolchains/armv7.toolchain.cmake
