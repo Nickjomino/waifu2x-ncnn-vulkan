@@ -17,7 +17,7 @@ jobs:
 
       - name: Clone the repository
         run: |
-          git clone https://github.com/seu-usuario/waifu2x-ncnn-vulkan.git
+          git clone https://github.com/Nickjomino/waifu2x-ncnn-vulkan.git
           cd waifu2x-ncnn-vulkan
 
       - name: Set up CMake
