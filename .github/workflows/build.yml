@@ -1,0 +1,44 @@
+name: Build for ARMv7
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up CMake
+        uses: jwlawson/actions-setup-cmake@v1
+        with:
+          cmake-version: '3.21.0'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libvulkan-dev
+
+      - name: Configure CMake
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchains/armv7.toolchain.cmake
+
+      - name: Build
+        run: |
+          cd build
+          make
+
+      - name: Archive the build artifacts
+        run: |
+          cd build
+          tar -czvf waifu2x-ncnn-vulkan-armv7.tar.gz *
+        artifacts:
+          name: waifu2x-ncnn-vulkan-armv7
+          path: build/waifu2x-ncnn-vulkan-armv7.tar.gz
