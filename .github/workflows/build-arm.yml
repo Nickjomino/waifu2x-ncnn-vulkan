@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchains/armv7.toolchain.cmake
+          cmake ../src -DCMAKE_TOOLCHAIN_FILE=../toolchains/armv7.toolchain.cmake
 
       - name: Build
         run: |
