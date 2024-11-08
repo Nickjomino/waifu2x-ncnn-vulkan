@@ -36,10 +36,8 @@ jobs:
           cd build
           make
 
-      - name: Archive the build artifacts
-        run: |
-          cd build
-          tar -czvf waifu2x-ncnn-vulkan-armv7.tar.gz *
-        artifacts:
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3  # Use uma versão estável da ação
+        with:
           name: waifu2x-ncnn-vulkan-armv7
-          path: build/waifu2x-ncnn-vulkan-armv7.tar.gz
+          path: build/waifu2x-ncnn-vulkan-armv7.tar.gz  # Ajuste o caminho conforme necessário
